@@ -1,0 +1,42 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-searchbar [debounce]="1000" show-cancel-button="focus" placeholder="Search by city"
+      (ionInput)="handleInput($event)" (ionFocus)="onFocus()"></ion-searchbar>
+    <ion-text color="danger"><small [hidden]="textHide">Please only search with 'jamnagar', 'rajkot', 'ahmedabad',
+        'korea','china', 'london','america'</small></ion-text>
+    <ion-list *ngIf="!filteredCityHide">
+      <ion-item *ngFor="let result of filterCities" (click)="click(result)">
+        <ion-label>{{ result }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="ion-text-center">
+    <h1>
+      {{info?.name}}
+      <ion-icon name="location-outline"></ion-icon>
+    </h1>
+    <div class="font-xlarge"><strong>{{realTemp}}</strong>&deg;</div>
+    <div class="ion-text-capitalize"><strong>{{info?.weather[0].description}}</strong>
+      <img class="icon" src="https://openweathermap.org/img/wn/{{info?.weather[0].icon}}@2x.png">
+    </div>
+  </div>
+
+  <div class="mt-30">
+    <ion-text class="ion-padding">Weather details</ion-text>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let item of details" size="6">
+          <ion-card mode="ios">
+            <ion-card-content>
+              <ion-icon [name]="item.icon"></ion-icon>
+              <p>{{item.name}}</p>
+              <h2>{{item.value}}{{item.symbol}}</h2>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

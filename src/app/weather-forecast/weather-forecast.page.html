@@ -1,0 +1,15 @@
+<ion-content>
+  <ion-card mode="ios">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let item of getHourlyData">
+            <p>{{item.time}}</p>
+            <img class="icon" src="https://openweathermap.org/img/wn/{{item?.weather[0].icon}}@2x.png">
+            <p>{{item.realTemp}}&deg;</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
